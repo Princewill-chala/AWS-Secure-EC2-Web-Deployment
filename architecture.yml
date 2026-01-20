@@ -1,0 +1,31 @@
+                 ┌──────────────────────────┐
+                 │        IAM USER          │
+                 │  (EC2-Admins Group)     │
+                 │  - No Root Access       │
+                 └───────────┬─────────────┘
+                             │
+                      AWS Console / CLI
+                             │
+                             v
+┌──────────────┐     ┌─────────────────────────────┐
+│   User PC    │────▶│   EC2 Instance (Ubuntu)     │
+│ (SSH :22)    │     │   - t2.micro                │
+│ (Key Pair)   │     │   - Security Group Firewall │
+└──────┬───────┘     │   - Root Login Disabled     │
+       │             │   - Sudo User Created       │
+       │             └─────────────┬──────────────┘
+       │                           │
+       │                     Apache Web Server
+       │                           │
+       │                    /var/www/html
+       │                           │
+       │                     Static Website
+       │                           │
+       └───────────┐               v
+                   │        Elastic IP (Public)
+                   │               │
+                   └──────────────▶│
+                                   v
+                            Internet Users
+                         (HTTP Port 80 Open)
+
