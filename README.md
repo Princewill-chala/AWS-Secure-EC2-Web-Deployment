@@ -40,7 +40,7 @@ The goal is to simulate a real-world cloud deployment scenario and document it p
                          (HTTP Port 80 Open)
 
 ```
-### **Core Components:**
+### ***Core Components:***
 - AWS IAM (Least-privilege access)
 - EC2 (t3.micro, Ubuntu 22.04)
 - Security Groups (Firewall rules)
