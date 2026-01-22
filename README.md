@@ -105,6 +105,7 @@
   - Reboot and confirm persistent access.
 
 ***7. Server Hardening***
+![sshd_configuration](AWS_Project/sshd_configuration.png)
 
   ```bash
   sudo adduser cloudadmin
