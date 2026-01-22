@@ -1,10 +1,13 @@
 # AWS-Secure-EC2-Web-Deployment
 
-## Overview
-This project demonstrates the secure deployment of a production-ready static website on Amazon Web Services (AWS) using an EC2 instance running Ubuntu 22.04.
-It follows cloud security best practices, including proper IAM usage, network hardening with security groups, key-based authentication, Elastic IP assignment, and basic Linux server hardening.
+## Table of contents
+- [Project Overview](#overview)
 
-The goal is to simulate a real-world cloud deployment scenario and document it professionally for DevOps and Cloud Security portfolios.
+## Overview
+  This project demonstrates the secure deployment of a production-ready static website on Amazon Web Services (AWS) using an EC2 instance running Ubuntu 22.04.
+  It follows cloud security best practices, including proper IAM usage, network hardening with security groups, key-based authentication, Elastic IP assignment, and basic Linux     server hardening.
+
+  The goal is to simulate a real-world cloud deployment scenario and document it professionally for DevOps and Cloud Security portfolios.
 
 ## Architecture
 ```yaml
@@ -41,12 +44,82 @@ The goal is to simulate a real-world cloud deployment scenario and document it p
 
 ```
 ### ***Core Components:***
-- AWS IAM (Least-privilege access)
-- EC2 (t3.micro, Ubuntu 22.04)
-- Security Groups (Firewall rules)
-- SSH Key Pair (Secure access)
-- Elastic IP (Persistent public access)
-- Web Server (Apache)
+  - AWS IAM (Least-privilege access)
+  - EC2 (t3.micro, Ubuntu 22.04)
+  - Security Groups (Firewall rules)
+  - SSH Key Pair (Secure access)
+  - Elastic IP (Persistent public access)
+  - Web Server (Apache)
+
+## Steps Performed
+***1. IAM Configuration***
+
+  - Create an IAM group EC2-Admins.
+  - Attach EC2 full access policy.
+  - Create a user and added to the group.
+  - Root account was never used for operations.
+
+***2. Key Pair & Security Group***
+
+  - Generate RSA key pair.
+  - Configure inbound rules:
+     ```bash
+     SSH (22) → My public IP only
+     HTTP (80) → 0.0.0.0/0
+     ```
+  - All other ports should be blocked.
+
+***3. EC2 Deployment***
+
+  - Launched Ubuntu 22.04 on t2.micro.
+  - Attach key pair and security group.
+  - Enabled public IP.
+
+***4. Server Setup***
+
+  ```bash
+  sudo apt update
+  sudo apt install apache2 -y 
+  sudo systemctl start apache2
+  ```
+
+***5. Website Deployment***
+
+  ```bash
+  sudo rm -rf /var/www/html/*
+  sudo unzip tooplate-template.zip -d /var/www/html/
+  sudo chown -R www-data:www-data /var/www/html
+  sudo chmod -R 755 /var/www/html
+  ```
+
+***6. Elastic IP***
+
+  - Allocate an Elastic IP.
+  - Associate it with EC2.
+  - Reboot and confirm persistent access.
+
+***7. Server Hardening***
+
+  ```bash
+  sudo adduser cloudadmin
+  sudo usermod -aG sudo cloudadmin
+  sudo nano /etc/ssh/sshd_config
+  # Set: PermitRootLogin no
+  sudo systemctl restart ssh
+  ```
+
+## Security Configuration Instructions
+
+  - Never use the root account for daily operations or routine tasks.
+  - Restrict SSH access to your personal IP address only.
+  - Expose only the ports that are strictly required for the application or service.
+  - Enforce key-based authentication for all SSH connections; disable password authentication.
+  - Disable direct root login over SSH.
+  - Create and use a separate, non-root user account with sudo privileges for all administrative work.
+  - Assign and use an Elastic IP address to the instance to prevent public IP changes and avoid DNS drift.
+
+
+
 
 
 
