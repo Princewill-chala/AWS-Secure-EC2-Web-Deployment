@@ -73,6 +73,8 @@
      HTTP (80) → 0.0.0.0/0
      ```
   - All other ports should be blocked.
+![KeyPair](AWS_Project/keypair.png)
+![Security_Group](AWS_Project/securityGroup.png)
 
 ***3. EC2 Deployment***
 
@@ -89,7 +91,6 @@
   ```
 
 ***5. Website Deployment***
-![Deployment commands](AWS_Project/deployment_commands.png)
 
   ```bash
   sudo rm -rf /var/www/html/*
@@ -97,23 +98,25 @@
   sudo chown -R www-data:www-data /var/www/html
   sudo chmod -R 755 /var/www/html
   ```
+![Deployment commands](AWS_Project/deployment_commands.png)
 
 ***6. Elastic IP***
 
   - Allocate an Elastic IP.
   - Associate it with EC2.
   - Reboot and confirm persistent access.
+![Elastic_IP](AWS_Project/elastic_ip.png)
 
 ***7. Server Hardening***
-![sshd_configuration](AWS_Project/sshd_configuration.png)
 
-  ```bash
+ ```bash
   sudo adduser cloudadmin
   sudo usermod -aG sudo cloudadmin
   sudo nano /etc/ssh/sshd_config
   # Set: PermitRootLogin no
   sudo systemctl restart ssh
   ```
+![sshd_configuration](AWS_Project/sshd_configuration.png)
 
 ## Security Configuration Instructions
 
