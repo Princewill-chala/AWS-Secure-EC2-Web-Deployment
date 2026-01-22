@@ -57,6 +57,7 @@
 
 ## Steps Performed
 ***1. IAM Configuration***
+![IAM_User](AWS_Project/iam_user.png)
 
   - Create an IAM group EC2-Admins.
   - Attach EC2 full access policy.
