@@ -2,6 +2,10 @@
 
 ## Table of contents
 - [Project Overview](#overview)
+- [Architecture Explanation](#architecture)
+- [Steps Taken](#steps-performed)
+- [Security Configuration](#security-configuration-instructions)
+
 
 ## Overview
   This project demonstrates the secure deployment of a production-ready static website on Amazon Web Services (AWS) using an EC2 instance running Ubuntu 22.04.
