@@ -88,6 +88,7 @@
   ```
 
 ***5. Website Deployment***
+![Deployment commands](AWS_Project/deployment_commands.png)
 
   ```bash
   sudo rm -rf /var/www/html/*
