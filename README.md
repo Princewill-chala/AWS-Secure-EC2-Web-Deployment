@@ -57,12 +57,12 @@
 
 ## Steps Performed
 ***1. IAM Configuration***
-![IAM_User](AWS_Project/iam_user.png)
 
   - Create an IAM group EC2-Admins.
   - Attach EC2 full access policy.
   - Create a user and added to the group.
   - Root account was never used for operations.
+![IAM_User](AWS_Project/iam_user.png)
 
 ***2. Key Pair & Security Group***
 
@@ -81,6 +81,7 @@
   - Launched Ubuntu 22.04 on t2.micro.
   - Attach key pair and security group.
   - Enabled public IP.
+![Apache_2](AWS_Project/apache_default_page.png)
 
 ***4. Server Setup***
 
